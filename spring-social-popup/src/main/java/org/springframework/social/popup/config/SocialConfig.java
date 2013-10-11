@@ -40,6 +40,8 @@ import org.springframework.social.popup.connect.SinglePageConnectController;
 import org.springframework.social.popup.facebook.PopupDialogConnectInterceptor;
 import org.springframework.social.popup.facebook.PostToWallAfterConnectInterceptor;
 import org.springframework.social.popup.twitter.TweetAfterConnectInterceptor;
+import org.springframework.social.tumblr.api.Tumblr;
+import org.springframework.social.tumblr.connect.TumblrConnectionFactory;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.impl.TwitterTemplate;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
@@ -63,6 +65,8 @@ public class SocialConfig {
 		ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
 		registry.addConnectionFactory(new TwitterConnectionFactory(environment.getProperty("twitter.consumerKey"),
 				environment.getProperty("twitter.consumerSecret")));
+		registry.addConnectionFactory(new TumblrConnectionFactory(environment.getProperty("tumblr.consumerKey"),
+				environment.getProperty("tumblr.consumerSecret")));
 		registry.addConnectionFactory(new FacebookConnectionFactory(environment.getProperty("facebook.clientId"),
 				environment.getProperty("facebook.clientSecret")));
 		return registry;
@@ -97,7 +101,14 @@ public class SocialConfig {
 		Connection<Twitter> twitter = connectionRepository().findPrimaryConnection(Twitter.class);
 		return twitter != null ? twitter.getApi() : null;
 	}
-	
+
+	@Bean
+	@Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)
+	public Tumblr tumblr() {
+		Connection<Tumblr> tumblr = connectionRepository().findPrimaryConnection(Tumblr.class);
+		return tumblr != null ? tumblr.getApi() : null;
+	}
+
 	@Bean
 	public ConnectController connectController() {
 		SinglePageConnectController connectController = new SinglePageConnectController(connectionFactoryLocator(), connectionRepository());

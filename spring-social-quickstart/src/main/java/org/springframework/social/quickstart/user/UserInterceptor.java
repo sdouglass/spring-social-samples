@@ -18,8 +18,11 @@ package org.springframework.social.quickstart.user;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.tumblr.api.Tumblr;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -69,7 +72,10 @@ public final class UserInterceptor extends HandlerInterceptorAdapter {
 
 	private void handleSignOut(HttpServletRequest request, HttpServletResponse response) {
 		if (SecurityContext.userSignedIn() && request.getServletPath().startsWith("/signout")) {
-			connectionRepository.createConnectionRepository(SecurityContext.getCurrentUser().getId()).removeConnections("facebook");
+            ConnectionRepository connectionRepository =
+                    this.connectionRepository.createConnectionRepository(SecurityContext.getCurrentUser().getId());
+            connectionRepository.removeConnections("facebook");
+            connectionRepository.removeConnections("tumblr");
 			userCookieGenerator.removeCookie(response);
 			SecurityContext.remove();			
 		}
@@ -86,7 +92,10 @@ public final class UserInterceptor extends HandlerInterceptorAdapter {
 
 	private boolean userNotFound(String userId) {
 		// doesn't bother checking a local user database: simply checks if the userId is connected to Facebook
-		return connectionRepository.createConnectionRepository(userId).findPrimaryConnection(Facebook.class) != null;
+        ConnectionRepository connectionRepository = this.connectionRepository.createConnectionRepository(userId);
+        Connection<Facebook> facebookConnection = connectionRepository.findPrimaryConnection(Facebook.class);
+        Connection<Tumblr> tumblrConnection = connectionRepository.findPrimaryConnection(Tumblr.class);
+        return (facebookConnection != null || tumblrConnection != null);
 	}
 	
 }

@@ -14,5 +14,11 @@
 		<li><img src="http://graph.facebook.com/<c:out value="${friend.id}"/>/picture" align="middle"/><c:out value="${friend.name}"/></li>
 	</c:forEach>
 	</ul>	
+	<h3>Your Tumblr Blogs</h3>
+	<ul>
+	<c:forEach items="${blogs}" var="blog">
+		<li><a href="${blog.url}" target="_blank">${blog.name}</a></li>
+	</c:forEach>
+	</ul>
 	</body>
 </html>

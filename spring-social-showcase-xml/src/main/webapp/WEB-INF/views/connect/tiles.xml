@@ -23,7 +23,15 @@
 		<put-attribute name="content" value="/WEB-INF/views/connect/twitterConnected.jsp" />
 	</definition>
 
-	<definition name="connect/linkedinConnect" extends="page">
+    <definition name="connect/tumblrConnect" extends="page">
+        <put-attribute name="content" value="/WEB-INF/views/connect/tumblrConnect.jsp" />
+    </definition>
+
+    <definition name="connect/tumblrConnected" extends="page">
+        <put-attribute name="content" value="/WEB-INF/views/connect/tumblrConnected.jsp" />
+    </definition>
+
+    <definition name="connect/linkedinConnect" extends="page">
 		<put-attribute name="content" value="/WEB-INF/views/connect/linkedinConnect.jsp" />
 	</definition>
 

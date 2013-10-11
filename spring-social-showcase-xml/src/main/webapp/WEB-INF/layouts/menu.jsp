@@ -4,6 +4,13 @@
 
 <h4><a href="<c:url value="/connect"/>">Connections</a></h4>
 
+<h4><a href="<c:url value="/tumblr"/>">Tumblr</a></h4>
+<social:connected provider="tumblr">
+<ul class="menu">
+	<li><a href="<c:url value="/tumblr"/>">User Profile</a></li>
+</ul>
+</social:connected>
+
 <h4><a href="<c:url value="/twitter"/>">Twitter</a></h4>
 <social:connected provider="twitter">
 <ul class="menu">

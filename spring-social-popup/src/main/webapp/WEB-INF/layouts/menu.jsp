@@ -8,6 +8,10 @@
 	<h4><a href="<c:url value="/twitter"/>">Twitter</a></h4>
 </social:connected>
 
+<social:connected provider="tumblr">
+	<h4><a href="<c:url value="/tumblr"/>">Tumblr</a></h4>
+</social:connected>
+
 <social:connected provider="facebook">
 	<h4><a href="<c:url value="/facebook"/>">Facebook</a></h4>
 </social:connected>

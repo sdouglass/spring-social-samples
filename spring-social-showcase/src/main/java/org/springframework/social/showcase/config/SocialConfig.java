@@ -38,6 +38,7 @@ import org.springframework.social.linkedin.config.annotation.EnableLinkedIn;
 import org.springframework.social.showcase.facebook.PostToWallAfterConnectInterceptor;
 import org.springframework.social.showcase.signin.SimpleSignInAdapter;
 import org.springframework.social.showcase.twitter.TweetAfterConnectInterceptor;
+import org.springframework.social.tumblr.config.annotation.EnableTumblr;
 import org.springframework.social.twitter.config.annotation.EnableTwitter;
 
 /**
@@ -52,6 +53,7 @@ import org.springframework.social.twitter.config.annotation.EnableTwitter;
 @Configuration
 @Profile("simple")
 @EnableJdbcConnectionRepository
+@EnableTumblr(appId="${tumblr.consumerKey}", appSecret="${tumblr.consumerSecret}")
 @EnableTwitter(appId="${twitter.consumerKey}", appSecret="${twitter.consumerSecret}")
 @EnableFacebook(appId="${facebook.clientId}", appSecret="${facebook.clientSecret}")
 @EnableLinkedIn(appId="${linkedin.consumerKey}", appSecret="${linkedin.consumerSecret}")

@@ -34,6 +34,11 @@
 	<p>Or you can <a href="<c:url value="/signup"/>">signup</a> with a new account.</p>
 </form>
 
+	<!-- TUMBLR SIGNIN -->
+	<form id="tumblr_signin" action="<c:url value="/signin/tumblr"/>" method="POST">
+		<button type="submit"><img src="<c:url value="/resources/social/tumblr/connect-with-tumblr.png"/>" /></button>
+	</form>
+
 	<!-- TWITTER SIGNIN -->
 	<form id="tw_signin" action="<c:url value="/signin/twitter"/>" method="POST">
 		<button type="submit"><img src="<c:url value="/resources/social/twitter/sign-in-with-twitter-d.png"/>" /></button>

@@ -43,7 +43,10 @@
 	<h3>Sign in via a provider:</h3>
 	<p>(Uses SocialAuthenticationFilter)</p>
 
-	<!-- TWITTER SIGNIN -->
+    <!-- TUMBLR SIGNIN -->
+    <p><a href="<c:url value="/auth/tumblr"/>"><img src="<c:url value="/resources/social/tumblr/connect-with-tumblr.png"/>" border="0"/></a></p>
+
+    <!-- TWITTER SIGNIN -->
     <p><a href="<c:url value="/auth/twitter"/>"><img src="<c:url value="/resources/social/twitter/sign-in-with-twitter-d.png"/>" border="0"/></a></p>
 
 	<!-- FACEBOOK SIGNIN -->

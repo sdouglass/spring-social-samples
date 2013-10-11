@@ -45,6 +45,8 @@ import org.springframework.social.linkedin.connect.LinkedInConnectionFactory;
 import org.springframework.social.showcase.facebook.PostToWallAfterConnectInterceptor;
 import org.springframework.social.showcase.signin.SimpleSignInAdapter;
 import org.springframework.social.showcase.twitter.TweetAfterConnectInterceptor;
+import org.springframework.social.tumblr.api.Tumblr;
+import org.springframework.social.tumblr.connect.TumblrConnectionFactory;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
@@ -71,6 +73,8 @@ public class ExplicitSocialConfig {
 	@Scope(value="singleton", proxyMode=ScopedProxyMode.INTERFACES) 
 	public ConnectionFactoryLocator connectionFactoryLocator() {
 		ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
+		registry.addConnectionFactory(new TumblrConnectionFactory(environment.getProperty("tumblr.consumerKey"),
+				environment.getProperty("tumblr.consumerSecret")));
 		registry.addConnectionFactory(new TwitterConnectionFactory(environment.getProperty("twitter.consumerKey"),
 				environment.getProperty("twitter.consumerSecret")));
 		registry.addConnectionFactory(new FacebookConnectionFactory(environment.getProperty("facebook.clientId"),
@@ -108,6 +112,13 @@ public class ExplicitSocialConfig {
 	public Twitter twitter() {
 		Connection<Twitter> twitter = connectionRepository().findPrimaryConnection(Twitter.class);
 		return twitter != null ? twitter.getApi() : null;
+	}
+
+	@Bean
+	@Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)
+	public Tumblr tumblr() {
+		Connection<Tumblr> tumblr = connectionRepository().findPrimaryConnection(Tumblr.class);
+		return tumblr != null ? tumblr.getApi() : null;
 	}
 
 	@Bean

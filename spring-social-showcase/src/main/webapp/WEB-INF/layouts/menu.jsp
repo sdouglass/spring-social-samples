@@ -3,6 +3,18 @@
 
 <h4><a href="<c:url value="/connect"/>">Connections</a></h4>
 
+<h4><a href="<c:url value="/tumblr"/>">Tumblr</a></h4>
+<social:connected provider="tumblr">
+<ul class="menu">
+	<li><a href="<c:url value="/tumblr"/>">User Profile</a></li>
+	<%--<li><a href="<c:url value="/tumblr/timeline"/>">Timeline</a></li>--%>
+	<%--<li><a href="<c:url value="/tumblr/friends"/>">Friends</a></li>--%>
+	<%--<li><a href="<c:url value="/tumblr/followers"/>">Followers</a></li>--%>
+	<%--<li><a href="<c:url value="/tumblr/messages"/>">Messages</a></li>--%>
+	<%--<li><a href="<c:url value="/tumblr/trends"/>">Trends</a></li>--%>
+</ul>
+</social:connected>
+
 <h4><a href="<c:url value="/twitter"/>">Twitter</a></h4>
 <social:connected provider="twitter">
 <ul class="menu">
